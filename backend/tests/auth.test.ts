@@ -3,16 +3,13 @@ import { app } from '../index';
 import { PrismaClient } from '@prisma/client';
 import argon2 from 'argon2';
 
-// Get the mocked prisma instance
 const prisma = new PrismaClient() as any;
 
-// Mock argon2
 jest.mock('argon2', () => ({
   hash: jest.fn().mockResolvedValue('$argon2id$hashed'),
   verify: jest.fn().mockResolvedValue(true),
 }));
 
-// Mock analytics queue to avoid Redis connection
 jest.mock('../src/jobs/analytics.queue', () => ({
   analyticsQueue: { add: jest.fn() },
   startAnalyticsWorker: jest.fn(),

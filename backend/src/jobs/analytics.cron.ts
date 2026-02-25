@@ -48,5 +48,5 @@ export const startAnalyticsCron = () => {
     { timezone: 'UTC' }
   );
 
-  logger.info('✅ Analytics cron scheduled (daily at 00:05 UTC)');
+  logger.info('Analytics cron scheduled (daily at 00:05 UTC)');
 };

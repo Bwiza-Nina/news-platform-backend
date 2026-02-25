@@ -36,7 +36,6 @@ export class ArticleService {
       prisma.article.count({ where }),
     ]);
 
-    // Mark deleted ones
     const mapped = articles.map((a) => ({
       ...a,
       isDeleted: a.deletedAt !== null,
@@ -119,7 +118,6 @@ export class ArticleService {
     if (!article) throw { status: 404, message: 'Article not found' };
     if (article.deletedAt) throw { status: 410, message: 'News article no longer available' };
 
-    // Non-blocking: fire-and-forget read log creation
     if (!skipReadLog) {
       setImmediate(async () => {
         try {
@@ -130,7 +128,7 @@ export class ArticleService {
             },
           });
 
-          // Queue analytics job for today's aggregation
+          // Queue analytics job
           await analyticsQueue.add(
             'aggregate-reads',
             { articleId, date: new Date().toISOString().split('T')[0] },
@@ -141,7 +139,6 @@ export class ArticleService {
             }
           );
         } catch (err) {
-          // Silently log – never block the response
           console.error('ReadLog creation failed:', err);
         }
       });

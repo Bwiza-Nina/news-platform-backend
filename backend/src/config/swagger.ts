@@ -15,11 +15,11 @@ Built with Node.js + TypeScript + PostgreSQL + Prisma
 Use Bearer token from \`/api/auth/login\` in the Authorize button below.
 
 ### Features
-- 🔐 JWT Authentication with RBAC
-- 📝 Article management with soft deletion
-- 📊 Analytics engine with BullMQ job queue
-- 🔍 Full-text search, filtering, pagination
-- 🛡️ Rate limiting on read events
+- JWT Authentication with RBAC
+- Article management with soft deletion
+- Analytics engine with BullMQ job queue
+- Full-text search, filtering, pagination
+- Rate limiting on read events
       `,
       contact: {
         name: 'News API Support',
