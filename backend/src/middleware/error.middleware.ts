@@ -2,25 +2,25 @@ import { Request, Response, NextFunction } from 'express';
 import { logger } from '../utils/logger';
 
 export const errorHandler = (
-  err: Error,
+  err: any,
   req: Request,
   res: Response,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   next: NextFunction
 ) => {
   logger.error({
-    message: err.message,
+    message: err.message || err.toString(),
     stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
     path: req.path,
     method: req.method,
   });
 
   // Never leak stack traces to the client
-  return res.status(500).json({
+  return res.status(err.status || 500).json({
     Success: false,
-    Message: 'Internal server error',
+    Message: err.message || 'Internal server error',
     Object: null,
-    Errors: ['An unexpected error occurred. Please try again later.'],
+    Errors: [err.message || 'An unexpected error occurred. Please try again later.'],
   });
 };
 

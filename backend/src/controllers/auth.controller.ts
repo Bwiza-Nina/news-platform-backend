@@ -1,9 +1,9 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { authService } from '../services/auth.service';
 import { sendSuccess, sendError } from '../utils/response';
 
 export class AuthController {
-  async signup(req: Request, res: Response) {
+  async signup(req: Request, res: Response, next: NextFunction) {
     try {
       const user = await authService.signup(req.body);
       return sendSuccess(res, 'Account created successfully', user, 201);
@@ -11,7 +11,7 @@ export class AuthController {
       if (err.code === 'DUPLICATE_EMAIL') {
         return sendError(res, 'Registration failed', ['Email is already in use'], 409);
       }
-      throw err;
+      next(err); // Pass error to Express error handler
     }
   }
 
