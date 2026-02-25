@@ -31,8 +31,8 @@ A production-ready RESTful News API built with **Node.js + TypeScript**, featuri
 ### 1. Clone & Install
 
 ```bash
-git clone <your-repo-url>
-cd <your-repo-name>
+git clone https://github.com/Bwiza-Nina/news-platform-backend.git
+cd news-platform-backend
 cp .env.example .env
 cd backend && npm install
 ```
