@@ -46,3 +46,10 @@ export const sendPaginated = (
     Errors: null,
   });
 };
+
+export function getPagination(page?: string, size?: string) {
+  const pageNumber = Math.max(parseInt(page || '1', 10), 1);
+  const pageSize = Math.max(parseInt(size || '10', 10), 1);
+  const skip = (pageNumber - 1) * pageSize;
+  return { page: pageNumber, size: pageSize, skip };
+}

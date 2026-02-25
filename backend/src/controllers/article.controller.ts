@@ -15,17 +15,18 @@ export class ArticleController {
   }
 
   async getMyArticles(req: AuthRequest, res: Response) {
-    try {
-      const { articles, page, size, total } = await articleService.getMyArticles(
-        req.user!.sub,
-        req.query as any
-      );
-      return sendPaginated(res, 'Articles retrieved', articles, page, size, total);
-    } catch (err: any) {
-      if (err.status) return sendError(res, err.message, null, err.status);
-      throw err;
-    }
+  console.log('getMyArticles called', req.user); 
+  try {
+    const { articles, page, size, total } = await articleService.getMyArticles(
+      req.user!.sub,
+      req.query as any
+    );
+    return sendPaginated(res, 'Articles retrieved', articles, page, size, total);
+  } catch (err: any) {
+    if (err.status) return sendError(res, err.message, null, err.status);
+    throw err;
   }
+}
 
   async update(req: AuthRequest, res: Response) {
     try {

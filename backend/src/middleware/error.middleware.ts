@@ -5,7 +5,6 @@ export const errorHandler = (
   err: any,
   req: Request,
   res: Response,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   next: NextFunction
 ) => {
   logger.error({
@@ -14,8 +13,6 @@ export const errorHandler = (
     path: req.path,
     method: req.method,
   });
-
-  // Never leak stack traces to the client
   return res.status(err.status || 500).json({
     Success: false,
     Message: err.message || 'Internal server error',

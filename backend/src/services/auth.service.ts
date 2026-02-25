@@ -26,7 +26,6 @@ export class AuthService {
         name: true,
         email: true,
         role: true,
-        createdAt: true,
       },
     });
 

@@ -11,7 +11,7 @@ export class AuthController {
       if (err.code === 'DUPLICATE_EMAIL') {
         return sendError(res, 'Registration failed', ['Email is already in use'], 409);
       }
-      next(err); // Pass error to Express error handler
+      next(err); 
     }
   }
 
