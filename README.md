@@ -33,7 +33,7 @@ A production-ready RESTful News API built with **Node.js + TypeScript**, featuri
 ```bash
 git clone https://github.com/Bwiza-Nina/news-platform-backend.git
 cd news-platform-backend
-cp .env.example .env
+cp .env.example backend/.env
 cd backend && npm install
 ```
 
